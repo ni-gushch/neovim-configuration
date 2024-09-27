@@ -13,51 +13,58 @@ return {
       require("dap-go").setup()
 
       -- cpp c and rust debugger configuration
+      local debug_adapter_path = "/home/ngushcharin/.local/share/nvim/mason/packages/cpptools/extension/debugAdapters/bin/OpenDebugAD7"
       dap.adapters.cppdbg = {
         id = "cppdbg",
         type = "executable",
-        command = "/home/ngushcharin/apps/cpptools/extension/debugAdapters/bin/OpenDebugAD7",
+        command = debug_adapter_path,
       }
-      dap.configurations.cpp = {
-        {
-          name = "Launch file",
-          type = "cppdbg",
-          request = "launch",
-          program = function()
-            return vim.fn.input("Path to executable: ", vim.fn.getcwd() .. "/", "file")
-          end,
-          cwd = "${workspaceFolder}",
-          stopAtEntry = true,
-          setupCommands = {
-            {
-              text = "-enable-pretty-printing",
-              description = "enable pretty printing",
-              ignoreFailures = false,
-            },
-          },
-        },
-        {
-          name = "Attach to gdbserver :1234",
-          type = "cppdbg",
-          request = "launch",
-          MIMode = "gdb",
-          miDebuggerServerAddress = "localhost:1234",
-          miDebuggerPath = "/usr/bin/gdb",
-          cwd = "${workspaceFolder}",
-          program = function()
-            return vim.fn.input("Path to executable: ", vim.fn.getcwd() .. "/", "file")
-          end,
-          setupCommands = {
-            {
-              text = "-enable-pretty-printing",
-              description = "enable pretty printing",
-              ignoreFailures = false,
-            },
-          },
-        },
+      dap.adapters.lldb = {
+        type = "executable",
+        command = "/usr/bin/lldb-vscode", -- adjust as needed
+        name = "lldb",
       }
-      dap.configurations.c = dap.configurations.cpp
-      dap.configurations.rust = dap.configurations.cpp
+
+      -- dap.configurations.cpp = {
+      --   {
+      --     name = "Launch file",
+      --     type = "cppdbg",
+      --     request = "launch",
+      --     program = function()
+      --       return vim.fn.input("Path to executable: ", vim.fn.getcwd() .. "/", "file")
+      --     end,
+      --     cwd = "${workspaceFolder}",
+      --     stopAtEntry = true,
+      --     setupCommands = {
+      --       {
+      --         text = "-enable-pretty-printing",
+      --         description = "enable pretty printing",
+      --         ignoreFailures = false,
+      --       },
+      --     },
+      --   },
+      --   {
+      --     name = "Attach to gdbserver :1234",
+      --     type = "cppdbg",
+      --     request = "launch",
+      --     MIMode = "gdb",
+      --     miDebuggerServerAddress = "localhost:1234",
+      --     miDebuggerPath = "/usr/bin/gdb",
+      --     cwd = "${workspaceFolder}",
+      --     program = function()
+      --       return vim.fn.input("Path to executable: ", vim.fn.getcwd() .. "/", "file")
+      --     end,
+      --     setupCommands = {
+      --       {
+      --         text = "-enable-pretty-printing",
+      --         description = "enable pretty printing",
+      --         ignoreFailures = false,
+      --       },
+      --     },
+      --   },
+      -- }
+      -- dap.configurations.c = dap.configurations.cpp
+      -- dap.configurations.rust = dap.configurations.cpp
 
       -- dap ui opening configuration
       dap.listeners.before.attach.dapui_config = function()
@@ -73,6 +80,7 @@ return {
         dapui.close()
       end
 
+      vim.keymap.set("n", "<Leader>du", dapui.toggle, { desc = "Toggle dap ui interface" })
       vim.keymap.set("n", "<Leader>dt", dap.toggle_breakpoint, { desc = "Debug toggle breakpoint" })
       vim.keymap.set("n", "<Leader>dc", dap.continue, { desc = "Debug continue" })
     end,
