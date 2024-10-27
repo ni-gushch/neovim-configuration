@@ -83,18 +83,18 @@ return {
       end, { desc = "Debugging run last" })
       vim.keymap.set({ "n", "v" }, "<Leader>dh", function()
         require("dap.ui.widgets").hover()
-      end, { desc = "Debugging bap ui widgets hover" })
+      end, { desc = "Debugging dap ui widgets hover" })
       vim.keymap.set({ "n", "v" }, "<Leader>dp", function()
         require("dap.ui.widgets").preview()
-      end, { desc = "Debugging bap ui widgets preview" })
+      end, { desc = "Debugging dap ui widgets preview" })
       vim.keymap.set("n", "<Leader>df", function()
         local widgets = require("dap.ui.widgets")
         widgets.centered_float(widgets.frames)
-      end, { desc = "Debugging bap ui centered float widgets" })
+      end, { desc = "Debugging dap ui centered float widgets" })
       vim.keymap.set("n", "<Leader>ds", function()
         local widgets = require("dap.ui.widgets")
         widgets.centered_float(widgets.scopes)
-      end, { desc = "Debugging bap ui centerd float widgets scopes" })
+      end, { desc = "Debugging dap ui centerd float widgets scopes" })
     end,
   },
 }

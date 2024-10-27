@@ -43,7 +43,7 @@ return {
 		)
 		vim.keymap.set(
 			"n",
-			"<C-a><C-q>",
+			"<leader>tnt",
 			":Neotree toggle=true<CR>",
 			{ desc = "Toggle NeoTree" }
 		)
