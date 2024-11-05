@@ -13,6 +13,6 @@ return {
 			},
 		})
 
-		vim.keymap.set("n", "<leader>gf", vim.lsp.buf.format, { desc = "Format document" })
+		normal_map("<leader>gf", vim.lsp.buf.format, { desc = "Format document" })
 	end,
 }

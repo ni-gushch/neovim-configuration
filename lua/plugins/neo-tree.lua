@@ -35,23 +35,8 @@ return {
 			},
 		})
 
-		vim.keymap.set(
-			"n",
-			"<C-a>",
-			":Neotree source=filesystem reveal=true position=left<CR>",
-			{ desc = "Open NeoTree" }
-		)
-		vim.keymap.set(
-			"n",
-			"<leader>tnt",
-			":Neotree toggle=true<CR>",
-			{ desc = "Toggle NeoTree" }
-		)
-		vim.keymap.set(
-			"n",
-			"<leader>bf",
-			":Neotree buffers reveal float<CR>",
-			{ desc = "Open NeoTree oppened buffers" }
-		)
+		normal_map("<C-a>", ":Neotree source=filesystem reveal=true position=left<CR>", { desc = "Open NeoTree" })
+		normal_map("<leader>tnt", ":Neotree toggle=true<CR>", { desc = "Toggle NeoTree" })
+		normal_map("<leader>bf", ":Neotree buffers reveal float<CR>", { desc = "Open NeoTree oppened buffers" })
 	end,
 }
