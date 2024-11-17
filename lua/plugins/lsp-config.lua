@@ -3,7 +3,11 @@ return {
 		"williamboman/mason.nvim",
 		lazy = false,
 		config = function()
-			require("mason").setup()
+			require("mason").setup({
+				registries = {
+					"file:~/programming/mason-registry",
+				},
+			})
 		end,
 	},
 	{
@@ -26,6 +30,9 @@ return {
 			local util = require("lspconfig/util")
 
 			local lspconfig = require("lspconfig")
+      lspconfig.taplo.setup({
+        capabilities = capabilities,
+      })
 			lspconfig.ts_ls.setup({
 				capabilities = capabilities,
 			})
