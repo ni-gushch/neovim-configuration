@@ -5,7 +5,8 @@ return {
 		config = function()
 			require("mason").setup({
 				registries = {
-					"file:~/programming/mason-registry",
+					-- "file:~/programming/mason-registry",
+				      "github:ni-gushch/mason-registry",
 				},
 			})
 		end,
