@@ -9,6 +9,8 @@ return {
 				null_ls.builtins.formatting.gofumpt,
 				null_ls.builtins.formatting.goimports_reviser,
 				null_ls.builtins.formatting.golines,
+        null_ls.builtins.diagnostics.buf,
+        null_ls.builtins.formatting.buf
 				-- null_ls.builtins.diagnostics.eslint_d,
 			},
 		})

@@ -7,7 +7,7 @@ return {
 		},
 		config = function()
 			require("mason-nvim-dap").setup({
-				ensure_installed = { "codelldb", "cpptools" },
+				ensure_installed = { "codelldb", "cpptools", "delve" },
 				automatic_installation = true,
 			})
 		end,
@@ -25,6 +25,7 @@ return {
 
 			require("dapui").setup()
 			require("dap-go").setup()
+			require("dap.ext.vscode").load_launchjs(".vscode/launch.json", {})
 
 			-- cpp c and rust debugger configuration
 			dap.adapters.cppdbg = {
@@ -37,6 +38,16 @@ return {
 				command = "~/.local/share/nvim/mason/packages/codelldb/extension/lldb/bin/lldb", -- adjust as needed
 				name = "lldb",
 			}
+			-- dap.adapters.dlv = {
+			-- 	name = "dlv",
+			-- 	type = "executable",
+			-- 	command = "~/.local/share/nvim/mason/packages/delve/dlv",
+			-- }
+			-- dap.adapters.go = {
+			-- 	name = "dlv",
+			-- 	type = "executable",
+			-- 	command = "~/.local/share/nvim/mason/packages/delve/dlv",
+			-- }
 
 			-- dap ui opening configuration
 			dap.listeners.before.attach.dapui_config = function()
@@ -51,6 +62,9 @@ return {
 			dap.listeners.before.event_exited.dapui_config = function()
 				dapui.close()
 			end
+
+			vim.fn.sign_define("DapBreakpoint", { text = "🟥", texthl = "", linehl = "", numhl = "" })
+			vim.fn.sign_define("DapStopped", { text = "▶️", texthl = "", linehl = "", numhl = "" })
 
 			vim.keymap.set("n", "<Leader>du", dapui.toggle, { desc = "Toggle dap ui interface" })
 			vim.keymap.set("n", "<F5>", function()
