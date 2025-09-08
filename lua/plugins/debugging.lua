@@ -7,8 +7,6 @@ return {
 		},
 		config = function()
 			require("mason-nvim-dap").setup({
-				ensure_installed = { "codelldb", "cpptools", "delve" },
-				automatic_installation = true,
 			})
 		end,
 	},
