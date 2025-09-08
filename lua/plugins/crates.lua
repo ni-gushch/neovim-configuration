@@ -42,7 +42,7 @@ return {
 			vim.keymap.set("v", "<leader>cU", crates.upgrade_crates, { silent = true, desc = "[CRATES] Upgrade crates" })
 			normal_map("<leader>cA", crates.upgrade_all_crates, { silent = true, desc = "[CRATES] Upgrade all crates" })
 
-			normal_map("<leader>cx", crates.expand_plain_crate_to_inline_table, { silent = true, desc = "[CRATES] Expand plain crate to inline table" })
+      normal_map("<leader>cx", crates.expand_plain_crate_to_inline_table, { silent = true, desc = "[CRATES] Expand plain crate to inline table" })
 			normal_map("<leader>cX", crates.extract_crate_into_table, { silent = true, desc = "[CRATES] Extract crate into table" })
 
 			normal_map("<leader>cH", crates.open_homepage, { silent = true, desc = "[CRATES] Open homepage" })

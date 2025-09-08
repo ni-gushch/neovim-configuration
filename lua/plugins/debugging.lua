@@ -31,23 +31,28 @@ return {
 			dap.adapters.cppdbg = {
 				id = "cppdbg",
 				type = "executable",
-				command = "~/.local/share/nvim/mason/packages/cpptools/extension/debugAdapters/bin/OpenDebugAD7",
 			}
 			dap.adapters.lldb = {
 				type = "executable",
-				command = "~/.local/share/nvim/mason/packages/codelldb/extension/lldb/bin/lldb", -- adjust as needed
 				name = "lldb",
 			}
-			-- dap.adapters.dlv = {
-			-- 	name = "dlv",
-			-- 	type = "executable",
-			-- 	command = "~/.local/share/nvim/mason/packages/delve/dlv",
-			-- }
-			-- dap.adapters.go = {
-			-- 	name = "dlv",
-			-- 	type = "executable",
-			-- 	command = "~/.local/share/nvim/mason/packages/delve/dlv",
-			-- }
+      dap.adapters.coreclr = {
+        type = "executable",
+        command = vim.fn.stdpath("data") .. "/mason/bin/netcoredbg",
+        args = { "--interpreter=vscode" },
+      }
+
+      -- configurations
+      dap.configurations.cs = {
+        {
+          type = "coreclr",
+          name = "Launch",
+          request = "launch",
+          program = function()
+            return vim.fn.input("Path to dll: ", vim.fn.getcwd() .. "/bin/Debug/net8.0/YourApp.dll", "file")
+          end,
+        },
+      }
 
 			-- dap ui opening configuration
 			dap.listeners.before.attach.dapui_config = function()
