@@ -5,7 +5,7 @@ return {
 		require("lualine").setup({
   options = { theme = "catppuccin" },
 			options = {
-				theme = "dracula",
+				theme = "catppuccin",
 			},
 			sections = {
 				lualine_c = {
