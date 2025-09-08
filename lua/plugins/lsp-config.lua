@@ -6,7 +6,8 @@ return {
 			require("mason").setup({
 				registries = {
 					-- "file:~/programming/mason-registry",
-				      "github:ni-gushch/mason-registry",
+					"github:mason-org/mason-registry",
+					"github:ni-gushch/mason-registry",
 				},
 			})
 		end,
@@ -18,8 +19,7 @@ return {
 			auto_install = true,
 		},
 		config = function()
-			require("mason-lspconfig").setup({
-			})
+			require("mason-lspconfig").setup({})
 		end,
 	},
 	{
@@ -30,9 +30,9 @@ return {
 			local util = require("lspconfig/util")
 
 			local lspconfig = require("lspconfig")
-      lspconfig.taplo.setup({
-        capabilities = capabilities,
-      })
+			lspconfig.taplo.setup({
+				capabilities = capabilities,
+			})
 			lspconfig.ts_ls.setup({
 				capabilities = capabilities,
 			})
@@ -60,6 +60,8 @@ return {
 			lspconfig.lua_ls.setup({
 				capabilities = capabilities,
 			})
+			lspconfig.csharp_ls.setup({ capabilities = capabilities })
+			lspconfig.marksman.setup({ capabilities = capabilities })
 
 			normal_map("K", vim.lsp.buf.hover, { desc = "Hover actions. Show info about object." })
 			normal_map("<leader>gd", vim.lsp.buf.definition, { desc = "Go to definition" })
